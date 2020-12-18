@@ -1,0 +1,171 @@
+---
+swagger: "2.0"
+info:
+  version: "1.0"
+  title: "create-query-org-env-api"
+paths:
+  /anypoint: {}
+  /anypoint/org:
+    get:
+      operationId: "anypointOrgGET"
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          schema:
+            example:
+            - Organization Name: "NJC Labs"
+              id: "8d0888ce-0877-4524-8983-063be18c34be"
+            - Organization Name: "core services sub"
+              id: "aaeefd35-3f99-4193-9495-56dd2560dec4"
+            - Organization Name: "core services sub1"
+              id: "c03fd737-9dff-46da-baa3-6a9cdb830010"
+          x-amf-mediaType: "application/json"
+        "400":
+          description: ""
+          schema:
+            example:
+              code: "400"
+              message: "bad request"
+          x-amf-mediaType: "application/json"
+        "500":
+          description: ""
+          schema:
+            example:
+              code: "500"
+              message: "internal server error"
+          x-amf-mediaType: "application/json"
+      x-swagger-router-controller: "Default"
+    post:
+      operationId: "anypointOrgPOST"
+      parameters:
+      - in: "body"
+        name: "generated"
+        required: false
+        schema:
+          $ref: "#/definitions/create-org-DT"
+        x-amf-mediaType: "application/json"
+      responses:
+        "201":
+          description: ""
+          schema:
+            example:
+              message: "organization created"
+          x-amf-mediaType: "application/json"
+        "400":
+          description: ""
+          schema:
+            example:
+              code: "400"
+              message: "bad request"
+          x-amf-mediaType: "application/json"
+        "500":
+          description: ""
+          schema:
+            example:
+              code: "500"
+              message: "internal server error"
+          x-amf-mediaType: "application/json"
+      x-swagger-router-controller: "Default"
+  /anypoint/env:
+    get:
+      operationId: "anypointEnvGET"
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          schema:
+            example:
+            - id: "4db24a92-eed0-499d-a44c-402e2208620a"
+              name: "Design"
+              organizationId: "734f2b9e-090c-42ee-a81d-80b6e0995b04"
+              isProduction: false
+              type: "design"
+              clientId: "bdec9c75e90d44cb9116f64196e856bd"
+            - id: "9a5ac489-0c9b-452b-9ade-af2c8eb2538e"
+              name: "Production"
+              organizationId: "734f2b9e-090c-42ee-a81d-80b6e0995b04"
+              isProduction: true
+              type: "production"
+              clientId: "dd7421e9bf1740fcb97c5a91672b8d93"
+            - id: "d1235e46-3714-4b3c-a18d-6c86bcd5b6ca"
+              name: "Sandbox"
+              organizationId: "734f2b9e-090c-42ee-a81d-80b6e0995b04"
+              isProduction: false
+              type: "sandbox"
+              clientId: "60089cf90e034f77a66d0308f8127dcb"
+          x-amf-mediaType: "application/json"
+        "400":
+          description: ""
+          schema:
+            example:
+              code: "400"
+              message: "bad request"
+          x-amf-mediaType: "application/json"
+        "500":
+          description: ""
+          schema:
+            example:
+              code: "500"
+              message: "internal server error"
+          x-amf-mediaType: "application/json"
+      x-swagger-router-controller: "Default"
+    post:
+      operationId: "anypointEnvPOST"
+      parameters:
+      - in: "body"
+        name: "generated"
+        required: false
+        schema:
+          $ref: "#/definitions/create-env-DT"
+        x-amf-mediaType: "application/json"
+      responses:
+        "201":
+          description: ""
+          schema:
+            example:
+              message: "Environment Created"
+          x-amf-mediaType: "application/json"
+        "400":
+          description: ""
+          schema:
+            example:
+              code: "400"
+              message: "bad request"
+          x-amf-mediaType: "application/json"
+        "500":
+          description: ""
+          schema:
+            example:
+              code: "500"
+              message: "internal server error"
+          x-amf-mediaType: "application/json"
+      x-swagger-router-controller: "Default"
+definitions:
+  create-org-DT:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      name:
+        type: "string"
+        example: "core services sub business group"
+    example:
+      name: "core services sub"
+    additionalProperties: {}
+  create-env-DT:
+    type: "object"
+    required:
+    - "isProduction"
+    - "name"
+    properties:
+      name:
+        type: "string"
+        example: "Sandbox"
+      isProduction:
+        type: "boolean"
+        example: false
+    example:
+      name: "Demo"
+      isProduction: false
+    additionalProperties: {}
